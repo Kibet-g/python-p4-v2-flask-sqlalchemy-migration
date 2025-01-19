@@ -1,8 +1,5 @@
-# server/app.py
-
-from flask import Flask
+from flask import Flask, jsonify
 from flask_migrate import Migrate
-
 from models import db
 
 # create a Flask application instance 
@@ -19,6 +16,11 @@ migrate = Migrate(app, db)
 
 # initialize the Flask application to use the database
 db.init_app(app)
+
+# Add a simple route for testing
+@app.route('/')
+def home():
+    return jsonify({"message": "Welcome to the Employee API!"})
 
 
 if __name__ == '__main__':
